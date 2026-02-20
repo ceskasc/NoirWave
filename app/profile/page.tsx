@@ -1,12 +1,31 @@
 "use client";
 import React from 'react';
-import { tracks, userProfile } from '@/data/db';
+import { tracks, userProfile, listeningHistory, artists } from '@/data/db';
 import { TrackList } from '@/components/shared/TrackList';
 import { Play, Settings, Edit3, Share2, Crown } from 'lucide-react';
 import { motion } from 'framer-motion';
 
 export default function ProfilePage() {
-    const topTracks = tracks.slice(0, 5);
+    // Dynamic Stats Calculation
+    const playedTracks = listeningHistory.map(history => tracks.find(t => t.id === history.trackId)).filter(Boolean) as typeof tracks;
+
+    // 1. Total Minutes
+    const totalSeconds = playedTracks.reduce((acc, t) => acc + t.duration, 0);
+    const totalMinutes = Math.floor(totalSeconds / 60).toLocaleString();
+
+    // 2. Top Genre
+    const genreCounts: Record<string, number> = {};
+    playedTracks.forEach(t => {
+        const artist = artists.find(a => a.id === t.artistId);
+        if (artist?.genre) {
+            genreCounts[artist.genre] = (genreCounts[artist.genre] || 0) + 1;
+        }
+    });
+    const topGenre = Object.entries(genreCounts).sort((a, b) => b[1] - a[1])[0]?.[0] || 'Unknown';
+
+    // Unique top tracks for the list (just taking the first 5 unique played ones for variety)
+    const uniqueIds = Array.from(new Set(playedTracks.map(t => t.id))).slice(0, 5);
+    const topTracks = uniqueIds.map(id => tracks.find(t => t.id === id)).filter(Boolean) as typeof tracks;
 
     return (
         <div className="space-y-12 animate-in fade-in zoom-in-95 duration-1000">
@@ -76,15 +95,15 @@ export default function ProfilePage() {
                         <motion.div whileHover={{ scale: 1.02 }} className="p-6 rounded-2xl bg-gradient-to-br from-white/5 to-white/0 border border-white/10 relative overflow-hidden group">
                             <div className="absolute top-0 right-0 w-32 h-32 bg-primary/20 rounded-full blur-3xl -mr-10 -mt-10 group-hover:bg-primary/40 transition-colors" />
                             <p className="text-text-muted font-medium mb-1">Total Minutes Played</p>
-                            <h3 className="text-4xl font-black text-white">12,482</h3>
-                            <p className="text-primary text-sm mt-2 font-medium">+14% from last month</p>
+                            <h3 className="text-4xl font-black text-white">{totalMinutes}</h3>
+                            <p className="text-primary text-sm mt-2 font-medium">+12% from last week</p>
                         </motion.div>
 
                         <motion.div whileHover={{ scale: 1.02 }} className="p-6 rounded-2xl bg-gradient-to-br from-white/5 to-white/0 border border-white/10 relative overflow-hidden group">
                             <div className="absolute top-0 right-0 w-32 h-32 bg-secondary/20 rounded-full blur-3xl -mr-10 -mt-10 group-hover:bg-secondary/40 transition-colors" />
                             <p className="text-text-muted font-medium mb-1">Top Genre</p>
-                            <h3 className="text-3xl font-black text-white">Synthwave</h3>
-                            <p className="text-secondary text-sm mt-2 font-medium">Top 5% of listeners</p>
+                            <h3 className="text-3xl font-black text-white">{topGenre}</h3>
+                            <p className="text-secondary text-sm mt-2 font-medium">Your absolute favorite</p>
                         </motion.div>
                     </div>
                 </div>

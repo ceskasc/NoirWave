@@ -3,11 +3,12 @@ import React, { useEffect, useState } from 'react';
 import { usePlayerStore } from '@/store/usePlayerStore';
 import { Play, Pause, SkipBack, SkipForward, Shuffle, Repeat, Volume2, Maximize2, Minimize2 } from 'lucide-react';
 import { ProceduralCover } from '@/components/ui/ProceduralCover';
+import { cn } from '@/lib/utils';
 import { motion, AnimatePresence } from 'framer-motion';
 import { artists } from '@/data/db';
 
 export function PlayerBar() {
-    const { currentTrack, isPlaying, progress, duration, volume, isFullscreen, togglePlay, setProgress, setVolume, nextTrack, prevTrack, toggleFullscreen } = usePlayerStore();
+    const { currentTrack, isPlaying, progress, duration, volume, isFullscreen, isShuffle, isRepeat, togglePlay, setProgress, setVolume, nextTrack, prevTrack, toggleFullscreen, toggleShuffle, toggleRepeat } = usePlayerStore();
 
     // Local state for dragging progress bar
     const [isDragging, setIsDragging] = useState(false);
@@ -72,7 +73,7 @@ export function PlayerBar() {
             {/* Center: Controls */}
             <div className="w-1/3 flex flex-col items-center gap-2 max-w-2xl px-4">
                 <div className="flex flex-row items-center gap-6">
-                    <button className="text-text-muted hover:text-white transition-colors"><Shuffle className="w-4 h-4" /></button>
+                    <button onClick={toggleShuffle} className={cn("transition-colors", isShuffle ? "text-primary neon-text" : "text-text-muted hover:text-white")}><Shuffle className="w-4 h-4" /></button>
                     <button onClick={prevTrack} className="text-white/70 hover:text-white transition-colors"><SkipBack className="w-5 h-5 fill-current" /></button>
                     <button onClick={() => {
                         if (!currentTrack) return; // Do nothing if no track is selected
@@ -81,7 +82,7 @@ export function PlayerBar() {
                         {isPlaying ? <Pause className="w-5 h-5 fill-current" /> : <Play className="w-5 h-5 fill-current pl-[2px]" />}
                     </button>
                     <button onClick={nextTrack} className="text-white/70 hover:text-white transition-colors"><SkipForward className="w-5 h-5 fill-current" /></button>
-                    <button className="text-text-muted hover:text-white transition-colors"><Repeat className="w-4 h-4" /></button>
+                    <button onClick={toggleRepeat} className={cn("transition-colors", isRepeat ? "text-primary neon-text" : "text-text-muted hover:text-white")}><Repeat className="w-4 h-4" /></button>
                 </div>
 
                 <div className="w-full flex items-center gap-3 text-xs text-text-muted font-medium">

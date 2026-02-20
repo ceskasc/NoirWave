@@ -92,3 +92,29 @@ export const userProfile = {
     name: "NoirWave User",
     avatar: "https://images.unsplash.com/photo-1618077360395-f3068be8e001?w=800&q=80" // High quality random cinematic portrait (Neon man contour)
 };
+
+export const podcasts = [
+    { id: "po1", title: "The Daily Tech", host: "Sarah Jenkins", description: "Your daily dose of the latest in tech, AI, and software.", cover: "https://images.unsplash.com/photo-1589903308904-1010c2294adc?w=800&q=80", audioUrl: audioLinks[0], duration: 1200 }, // Podcast mic
+    { id: "po2", title: "Noir Conversations", host: "Marcus Vance", description: "Deep dives into the synthwave scene and electronic music history.", cover: "https://images.unsplash.com/photo-1610815147823-3806e22ee51b?w=800&q=80", audioUrl: audioLinks[1], duration: 2500 }, // Dark studio
+    { id: "po3", title: "Mindful Moments", host: "Dr. Elena Rostova", description: "Short meditations and mindfulness talks for a calm mind.", cover: "https://images.unsplash.com/photo-1499209974431-9dddcece7f88?w=800&q=80", audioUrl: audioLinks[2], duration: 900 } // Zen stones
+];
+
+export const radios = [
+    { id: "r1", title: "Night City FM", description: "24/7 continuous synthwave and retrowave streams.", cover: "https://images.unsplash.com/photo-1563089145-599997674d42?w=800&q=80", audioUrl: audioLinks[3] }, // Neon sign FM
+    { id: "r2", title: "Lofi Beats Radio", description: "Beats to relax/study to. Endless lofi station.", cover: "https://images.unsplash.com/photo-1524661135-423995f22d0b?w=800&q=80", audioUrl: audioLinks[4] }, // Cozy room rain
+    { id: "r3", title: "Classical Resonance", description: "The greatest symphonies streaming live from Vienna.", cover: "https://images.unsplash.com/photo-1549834185-132d7515eeaf?w=800&q=80", audioUrl: audioLinks[0] } // Orchestra hall
+];
+
+// Mock chronological listening history (Track IDs and timestamps)
+export const listeningHistory = [
+    { trackId: "t1", playedAt: "2023-10-27T14:30:00Z" },
+    { trackId: "t4", playedAt: "2023-10-27T14:36:00Z" },
+    { trackId: "t27", playedAt: "2023-10-27T14:42:00Z" },
+    { trackId: "t6", playedAt: "2023-10-27T15:00:00Z" },
+    { trackId: "t6", playedAt: "2023-10-27T15:03:00Z" }, // Listened twice
+    { trackId: "t24", playedAt: "2023-10-27T15:06:00Z" },
+    { trackId: "t10", playedAt: "2023-10-28T09:15:00Z" },
+    { trackId: "t11", playedAt: "2023-10-28T09:19:00Z" },
+    { trackId: "t18", playedAt: "2023-10-28T10:00:00Z" },
+    { trackId: "t12", playedAt: "2023-10-28T13:45:00Z" }
+];

@@ -5,9 +5,10 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Play, Pause, SkipBack, SkipForward, Shuffle, Repeat, Minimize2, ChevronDown } from 'lucide-react';
 import { ProceduralCover } from '@/components/ui/ProceduralCover';
 import { artists } from '@/data/db';
+import { cn } from '@/lib/utils';
 
 export function FullscreenPlayer() {
-    const { currentTrack, isPlaying, progress, duration, isFullscreen, toggleFullscreen, togglePlay, nextTrack, prevTrack, setProgress } = usePlayerStore();
+    const { currentTrack, isPlaying, progress, duration, isFullscreen, isShuffle, isRepeat, toggleFullscreen, togglePlay, nextTrack, prevTrack, setProgress, toggleShuffle, toggleRepeat } = usePlayerStore();
 
     const formatTime = (time: number) => {
         if (isNaN(time)) return '0:00';
@@ -111,7 +112,7 @@ export function FullscreenPlayer() {
 
                     {/* Buttons */}
                     <div className="flex items-center justify-center gap-10">
-                        <button className="text-white/50 hover:text-white transition-colors"><Shuffle className="w-6 h-6" /></button>
+                        <button onClick={toggleShuffle} className={cn("transition-colors", isShuffle ? "text-primary neon-text" : "text-white/50 hover:text-white")}><Shuffle className="w-6 h-6" /></button>
                         <button onClick={prevTrack} className="text-white hover:text-primary transition-colors"><SkipBack className="w-10 h-10 fill-current" /></button>
 
                         <button onClick={() => togglePlay()} className="w-24 h-24 flex items-center justify-center rounded-full bg-white text-black hover:scale-105 transition-transform shadow-[0_0_50px_rgba(255,255,255,0.4)]">
@@ -119,7 +120,7 @@ export function FullscreenPlayer() {
                         </button>
 
                         <button onClick={nextTrack} className="text-white hover:text-primary transition-colors"><SkipForward className="w-10 h-10 fill-current" /></button>
-                        <button className="text-white/50 hover:text-white transition-colors"><Repeat className="w-6 h-6" /></button>
+                        <button onClick={toggleRepeat} className={cn("transition-colors", isRepeat ? "text-primary neon-text" : "text-white/50 hover:text-white")}><Repeat className="w-6 h-6" /></button>
                     </div>
                 </div>
             </motion.div>

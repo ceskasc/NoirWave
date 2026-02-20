@@ -12,6 +12,8 @@ interface PlayerState {
     queue: Track[];
     isQueueOpen: boolean;
     isFullscreen: boolean;
+    isShuffle: boolean;
+    isRepeat: boolean;
     audio: HTMLAudioElement | null;
 
     initializeAudio: () => void;
@@ -21,6 +23,8 @@ interface PlayerState {
     setVolume: (volume: number) => void;
     toggleQueue: () => void;
     toggleFullscreen: () => void;
+    toggleShuffle: () => void;
+    toggleRepeat: () => void;
     nextTrack: () => void;
     prevTrack: () => void;
 }
@@ -34,6 +38,8 @@ export const usePlayerStore = create<PlayerState>((set, get) => ({
     queue: tracks,
     isQueueOpen: false,
     isFullscreen: false,
+    isShuffle: false,
+    isRepeat: false,
     audio: null,
 
     initializeAudio: () => {
@@ -129,21 +135,58 @@ export const usePlayerStore = create<PlayerState>((set, get) => ({
         set({ isFullscreen: isFS });
     },
 
+    toggleShuffle: () => set((state) => ({ isShuffle: !state.isShuffle })),
+    toggleRepeat: () => set((state) => ({ isRepeat: !state.isRepeat })),
+
     nextTrack: () => {
-        const { currentTrack, queue, playTrack } = get();
+        const { currentTrack, queue, playTrack, isRepeat, isShuffle } = get();
         if (!currentTrack) return;
+
+        if (isRepeat) {
+            const { audio } = get();
+            if (audio) {
+                audio.currentTime = 0;
+                audio.play().catch(e => console.error(e));
+                set({ progress: 0 });
+            }
+            return;
+        }
+
+        if (isShuffle) {
+            const randomIndex = Math.floor(Math.random() * queue.length);
+            playTrack(queue[randomIndex]);
+            return;
+        }
+
         const idx = queue.findIndex(t => t.id === currentTrack.id);
         if (idx !== -1 && idx < queue.length - 1) {
             playTrack(queue[idx + 1]);
+        } else if (idx === queue.length - 1) {
+            // End of queue, loop to start if desired, or stop. Let's loop to start for better UX.
+            playTrack(queue[0]);
         }
     },
 
     prevTrack: () => {
-        const { currentTrack, queue, playTrack } = get();
+        const { currentTrack, queue, playTrack, isRepeat, progress } = get();
         if (!currentTrack) return;
+
+        // If playing for more than 3 seconds or on repeat, just restart the track
+        if (progress > 3 || isRepeat) {
+            const { audio } = get();
+            if (audio) {
+                audio.currentTime = 0;
+                set({ progress: 0 });
+            }
+            return;
+        }
+
         const idx = queue.findIndex(t => t.id === currentTrack.id);
         if (idx > 0) {
             playTrack(queue[idx - 1]);
+        } else if (idx === 0) {
+            // Loop to the end of the queue
+            playTrack(queue[queue.length - 1]);
         }
     }
 }));

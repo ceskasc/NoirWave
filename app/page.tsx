@@ -1,9 +1,9 @@
 "use client";
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Play } from 'lucide-react';
+import { Play, Mic, Radio } from 'lucide-react';
 import { ProceduralCover } from '@/components/ui/ProceduralCover';
-import { playlists, tracks, albums } from '@/data/db';
+import { playlists, tracks, albums, podcasts, radios } from '@/data/db';
 import { usePlayerStore } from '@/store/usePlayerStore';
 import { TrackList } from '@/components/shared/TrackList';
 import Link from 'next/link';
@@ -140,6 +140,85 @@ export default function HomePage() {
                                 </div>
                             </motion.div>
                         </Link>
+                    ))}
+                </div>
+            </section>
+
+            {/* Podcasts Section */}
+            <section className="space-y-6">
+                <div className="flex items-center justify-between">
+                    <h2 className="text-3xl font-bold tracking-tight text-white flex items-center gap-4">
+                        <Mic className="text-secondary" /> Top Podcasts
+                        <div className="h-[2px] w-12 bg-secondary hidden md:block" />
+                    </h2>
+                </div>
+
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    {podcasts.map((podcast, i) => (
+                        <motion.div
+                            key={podcast.id}
+                            initial={{ opacity: 0, scale: 0.95 }}
+                            whileInView={{ opacity: 1, scale: 1 }}
+                            viewport={{ once: true }}
+                            transition={{ delay: i * 0.1 }}
+                            onClick={() => playTrack({
+                                id: podcast.id, title: podcast.title, artistId: "a1", albumId: "al1", duration: podcast.duration, audioUrl: podcast.audioUrl, cover: podcast.cover
+                            })}
+                            className="group flex items-center gap-4 p-4 rounded-2xl bg-white/5 border border-white/10 cursor-pointer hover:bg-white/10 transition-colors shadow-lg"
+                        >
+                            <div className="w-20 h-20 rounded-xl overflow-hidden shrink-0 relative shadow-md">
+                                <img src={podcast.cover} alt={podcast.title} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
+                                <div className="absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+                                    <Play className="w-6 h-6 text-white fill-current" />
+                                </div>
+                            </div>
+                            <div className="flex flex-col truncate">
+                                <span className="text-xs uppercase font-bold text-secondary mb-1">Podcast</span>
+                                <h3 className="font-bold text-white truncate group-hover:text-primary transition-colors">{podcast.title}</h3>
+                                <p className="text-sm text-text-muted truncate">{podcast.host}</p>
+                            </div>
+                        </motion.div>
+                    ))}
+                </div>
+            </section>
+
+            {/* Live Radios Section */}
+            <section className="space-y-6">
+                <div className="flex items-center justify-between">
+                    <h2 className="text-3xl font-bold tracking-tight text-white flex items-center gap-4">
+                        <Radio className="text-primary" /> Live Radios
+                        <div className="h-[2px] w-12 bg-primary hidden md:block" />
+                    </h2>
+                </div>
+
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    {radios.map((radio, i) => (
+                        <motion.div
+                            key={radio.id}
+                            initial={{ opacity: 0, y: 20 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true }}
+                            transition={{ delay: i * 0.1 }}
+                            onClick={() => playTrack({
+                                id: radio.id, title: radio.title, artistId: "a1", albumId: "al1", duration: 9999, audioUrl: radio.audioUrl, cover: radio.cover
+                            })}
+                            className="group relative h-40 rounded-2xl overflow-hidden cursor-pointer shadow-xl border border-white/10"
+                        >
+                            <img src={radio.cover} alt={radio.title} className="absolute inset-0 w-full h-full object-cover opacity-60 group-hover:opacity-40 group-hover:scale-110 transition-all duration-700" />
+                            <div className="absolute inset-0 bg-gradient-to-t from-black via-black/30 to-transparent" />
+
+                            <div className="absolute inset-0 p-6 flex flex-col justify-end">
+                                <div className="flex items-center gap-2 mb-1">
+                                    <span className="w-2 h-2 rounded-full bg-red-500 animate-pulse" />
+                                    <span className="text-[10px] uppercase font-bold text-red-400 tracking-wider">Live</span>
+                                </div>
+                                <h3 className="font-bold text-xl text-white group-hover:neon-text transition-colors">{radio.title}</h3>
+                            </div>
+
+                            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-12 h-12 bg-primary/20 backdrop-blur-md border border-primary/50 text-primary rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all transform scale-50 group-hover:scale-100 shadow-[0_0_20px_rgba(0,240,255,0.4)]">
+                                <Play className="w-5 h-5 fill-current ml-1" />
+                            </div>
+                        </motion.div>
                     ))}
                 </div>
             </section>
