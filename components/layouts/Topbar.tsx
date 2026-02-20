@@ -85,14 +85,14 @@ export function Topbar() {
                                     <div className="w-2 h-2 rounded-full bg-primary mt-1.5 shrink-0" />
                                     <div>
                                         <p className="text-sm text-white font-medium">Neon Nights released a new album!</p>
-                                        <p className="text-xs text-text-muted mt-1">Check out "Neon Skyline"</p>
+                                        <p className="text-xs text-text-muted mt-1">Check out &quot;Neon Skyline&quot;</p>
                                     </div>
                                 </div>
                                 <div className="p-3 hover:bg-white/5 rounded-xl transition-colors cursor-pointer flex gap-3 items-start">
                                     <div className="w-2 h-2 rounded-full bg-transparent mt-1.5 shrink-0" />
                                     <div>
                                         <p className="text-sm text-white/80 font-medium">Your playlist is trending</p>
-                                        <p className="text-xs text-text-muted mt-1">"Night Drive" gained 12 followers today.</p>
+                                        <p className="text-xs text-text-muted mt-1">&quot;Night Drive&quot; gained 12 followers today.</p>
                                     </div>
                                 </div>
                                 <div className="p-3 hover:bg-white/5 rounded-xl transition-colors cursor-pointer flex gap-3 items-start">

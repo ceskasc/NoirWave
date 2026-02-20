@@ -44,14 +44,14 @@ export default function SearchPage() {
                     animate={{ opacity: 1 }}
                     className="space-y-6"
                 >
-                    <h2 className="text-xl font-bold text-white">Top Results for "{query}"</h2>
+                    <h2 className="text-xl font-bold text-white">Top Results for &quot;{query}&quot;</h2>
                     {filteredTracks.length > 0 ? (
                         <div className="bg-black/30 backdrop-blur-md rounded-xl border border-white/5 py-2">
                             <TrackList tracksList={filteredTracks} />
                         </div>
                     ) : (
                         <div className="text-center py-20 text-text-muted">
-                            <p className="text-lg">No results found for "{query}"</p>
+                            <p className="text-lg">No results found for &quot;{query}&quot;</p>
                             <p className="text-sm mt-2">Try searching for Nightcall or Sunset</p>
                         </div>
                     )}

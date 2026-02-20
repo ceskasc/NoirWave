@@ -14,7 +14,7 @@ export default function LibraryPage() {
             <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 pb-6 border-b border-white/5">
                 <div>
                     <h1 className="text-4xl md:text-5xl font-black text-white tracking-tighter drop-shadow-lg neon-text">Your Library</h1>
-                    <p className="text-text-muted mt-2">Music you've saved to your collection.</p>
+                    <p className="text-text-muted mt-2">Music you&apos;ve saved to your collection.</p>
                 </div>
 
                 <div className="flex items-center gap-2 bg-black/40 p-1 rounded-full border border-white/10 backdrop-blur-md w-fit">
