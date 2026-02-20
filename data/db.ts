@@ -6,9 +6,9 @@ export const artists = [
     { id: "a4", name: "Neon Nights", genre: "Electronic", image: "https://images.unsplash.com/photo-1557672172-298e090bd0f1?w=800&q=80" }, // Cyberpunk city
     // New 6
     { id: "a5", name: "Lofi Study Girl", genre: "Lofi Hip Hop", image: "https://images.unsplash.com/photo-1518609878373-06d740f60d8b?w=800&q=80" }, // Cozy room night
-    { id: "a6", name: "Hans Zimmer Style", genre: "Cinematic", image: "https://images.unsplash.com/photo-1510681123285-bddd0e8b23c2?w=800&q=80" }, // Epic orchestra stage
+    { id: "a6", name: "Hans Zimmer Style", genre: "Cinematic", image: "https://images.unsplash.com/photo-1444703686981-a3abbc4d4fe3?w=800&q=80" }, // Epic orchestra stage
     { id: "a7", name: "Midnight Blues", genre: "Jazz", image: "https://images.unsplash.com/photo-1511192336575-5a79af67a629?w=800&q=80" }, // Saxophone dark
-    { id: "a8", name: "Cyberpunk 2077 Vibe", genre: "Industrial", image: "https://images.unsplash.com/photo-1605810230434-7631ac76ec81?w=800&q=80" }, // Scifi corridor
+    { id: "a8", name: "Cyberpunk 2077 Vibe", genre: "Industrial", image: "https://images.unsplash.com/photo-1579567761406-4684ee0c75b6?w=800&q=80" }, // Scifi corridor
     { id: "a9", name: "Ethereal Vocals", genre: "Ambient", image: "https://images.unsplash.com/photo-1493225245754-0eb75c3db325?w=800&q=80" }, // Foggy forest girl
     { id: "a10", name: "The Rockers", genre: "Rock", image: "https://images.unsplash.com/photo-1498038432885-c6f3f1b912ee?w=800&q=80" }, // Electric guitar live
 ];
@@ -21,16 +21,16 @@ export const albums = [
     { id: "al4", title: "Neon Skyline", artistId: "a4", year: 2023, cover: "https://images.unsplash.com/photo-1601042879364-f3947d3f9c16?w=800&q=80" }, // Neon signs
     { id: "al5", title: "Galactic Drift", artistId: "a1", year: 2024, cover: "https://images.unsplash.com/photo-1534447677768-be436bb09401?w=800&q=80" }, // Space nebula
     // New 10
-    { id: "al6", title: "Late Night Study", artistId: "a5", year: 2023, cover: "https://images.unsplash.com/photo-1516280440502-ba5bdcc9b3c4?w=800&q=80" }, // Coffee desk dark
-    { id: "al7", title: "Rainy Days", artistId: "a5", year: 2022, cover: "https://images.unsplash.com/photo-1515694346937-94d85e41e6f0?w=800&q=80" }, // Rain on window
+    { id: "al6", title: "Late Night Study", artistId: "a5", year: 2023, cover: "https://images.unsplash.com/photo-1518609878373-06d740f60d8b?w=800&q=80" }, // Coffee desk dark
+    { id: "al7", title: "Rainy Days", artistId: "a5", year: 2022, cover: "https://images.unsplash.com/photo-1465146344425-f00d5f5c8f07?w=800&q=80" }, // Rain on window
     { id: "al8", title: "Interstellar Dream", artistId: "a6", year: 2014, cover: "https://images.unsplash.com/photo-1444703686981-a3abbc4d4fe3?w=800&q=80" }, // Galaxy stars
-    { id: "al9", title: "Blue Note Sessions", artistId: "a7", year: 1959, cover: "https://images.unsplash.com/photo-1525926472839-81cb8bcbc01c?w=800&q=80" }, // Vintage trumpet
-    { id: "al10", title: "Night City Runner", artistId: "a8", year: 2077, cover: "https://images.unsplash.com/photo-1579567761406-4684ee0c75b6?w=800&q=80" }, // Cybergirl neon
-    { id: "al11", title: "Drone Ambient", artistId: "a9", year: 2020, cover: "https://images.unsplash.com/photo-1478760329108-5c3ed9d495a0?w=800&q=80" }, // Dark minimal gradient
+    { id: "al9", title: "Blue Note Sessions", artistId: "a7", year: 1959, cover: "https://images.unsplash.com/photo-1511192336575-5a79af67a629?w=800&q=80" }, // Vintage trumpet
+    { id: "al10", title: "Night City Runner", artistId: "a8", year: 2077, cover: "https://images.unsplash.com/photo-1601042879364-f3947d3f9c16?w=800&q=80" }, // Cybergirl neon
+    { id: "al11", title: "Drone Ambient", artistId: "a9", year: 2020, cover: "https://images.unsplash.com/photo-1534447677768-be436bb09401?w=800&q=80" }, // Dark minimal gradient
     { id: "al12", title: "Live at Wembley", artistId: "a10", year: 1986, cover: "https://images.unsplash.com/photo-1459749411175-04bf5292ceea?w=800&q=80" }, // Concert crowd silhouette
     { id: "al13", title: "Classical Masterpieces", artistId: "a2", year: 2005, cover: "https://images.unsplash.com/photo-1507838153414-b4b713384a76?w=800&q=80" }, // Sheet music
-    { id: "al14", title: "Synthwave Collection", artistId: "a1", year: 2019, cover: "https://images.unsplash.com/photo-1550684376-efcbd6e3f031?w=800&q=80" }, // Minimal purple grid
-    { id: "al15", title: "Jazz Club After Hours", artistId: "a7", year: 2021, cover: "https://images.unsplash.com/photo-1573514030799-d4c39ebc66fa?w=800&q=80" }, // Whiskey glass dark
+    { id: "al14", title: "Synthwave Collection", artistId: "a1", year: 2019, cover: "https://images.unsplash.com/photo-1618331835717-801e976710b2?w=800&q=80" }, // Minimal purple grid
+    { id: "al15", title: "Jazz Club After Hours", artistId: "a7", year: 2021, cover: "https://images.unsplash.com/photo-1520523839897-bd0b52f945a0?w=800&q=80" }, // Whiskey glass dark
 ];
 
 // Reusing the 5 real audio mock MP3s in a round-robin

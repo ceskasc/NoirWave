@@ -11,8 +11,8 @@ export function generateStaticParams() {
     }));
 }
 
-export default function ArtistPage({ params }: { params: { id: string } }) {
-    const { id } = params;
+export default async function ArtistPage({ params }: { params: Promise<{ id: string }> }) {
+    const { id } = await params;
     const artist = artists.find(a => a.id === id);
 
     if (!artist) return <div className="text-white">Artist not found</div>;

@@ -10,8 +10,8 @@ export function generateStaticParams() {
     }));
 }
 
-export default function PlaylistPage({ params }: { params: { id: string } }) {
-    const { id } = params;
+export default async function PlaylistPage({ params }: { params: Promise<{ id: string }> }) {
+    const { id } = await params;
     const playlist = playlists.find(p => p.id === id);
 
     if (!playlist) return <div className="text-white">Playlist not found</div>;

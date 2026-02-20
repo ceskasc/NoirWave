@@ -6,12 +6,12 @@ import { TrackList } from '@/components/shared/TrackList';
 import { motion } from 'framer-motion';
 
 const genres = [
-    { name: 'Synthwave', image: 'https://images.unsplash.com/photo-1614729939124-032f0b5689ce?w=800&q=80' }, // Neon grid
+    { name: 'Synthwave', image: 'https://images.unsplash.com/photo-1618331835717-801e976710b2?w=800&q=80' }, // Neon grid
     { name: 'Cinematic', image: 'https://images.unsplash.com/photo-1485846234645-a62644f84728?w=800&q=80' }, // Film reels
     { name: 'Retrowave', image: 'https://images.unsplash.com/photo-1557672172-298e090bd0f1?w=800&q=80' }, // Pink neon
     { name: 'Dark Ambient', image: 'https://images.unsplash.com/photo-1504701954957-2010ec3bcec1?w=800&q=80' }, // Dark foggy trees
     { name: 'Cyberpunk', image: 'https://images.unsplash.com/photo-1579567761406-4684ee0c75b6?w=800&q=80' }, // Cyber city
-    { name: 'Soundtrack', image: 'https://images.unsplash.com/photo-1510681123285-bddd0e8b23c2?w=800&q=80' }, // Orchestra
+    { name: 'Soundtrack', image: 'https://images.unsplash.com/photo-1444703686981-a3abbc4d4fe3?w=800&q=80' }, // Orchestra
     { name: 'Lofi Chill', image: 'https://images.unsplash.com/photo-1518609878373-06d740f60d8b?w=800&q=80' }, // Night room
     { name: 'Jazz Lounge', image: 'https://images.unsplash.com/photo-1511192336575-5a79af67a629?w=800&q=80' }, // Saxophone
 ];

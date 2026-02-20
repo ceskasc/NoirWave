@@ -10,8 +10,8 @@ export function generateStaticParams() {
     }));
 }
 
-export default function AlbumPage({ params }: { params: { id: string } }) {
-    const { id } = params;
+export default async function AlbumPage({ params }: { params: Promise<{ id: string }> }) {
+    const { id } = await params;
     const album = albums.find(a => a.id === id);
 
     if (!album) return <div className="text-white">Album not found</div>;
