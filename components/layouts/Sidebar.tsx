@@ -20,7 +20,7 @@ export function Sidebar() {
             {/* Logo */}
             <div className="h-20 flex items-center px-6">
                 <Link href="/" className="flex items-center gap-2 group">
-                    <Waves className="w-8 h-8 text-primary group-hover:neon-text transition-all duration-300" />
+                    <img src="/NoirWave/noir.png" alt="NoirWave Logo" className="w-8 h-8 object-contain group-hover:drop-shadow-[0_0_10px_rgba(0,240,255,0.8)] transition-all duration-300" />
                     <span className="font-bold text-xl tracking-tighter text-white">NoirWave</span>
                 </Link>
             </div>
