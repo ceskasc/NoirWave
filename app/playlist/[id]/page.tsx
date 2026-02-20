@@ -1,13 +1,17 @@
-"use client";
 import React from 'react';
 import { playlists, tracks } from '@/data/db';
-import { useParams } from 'next/navigation';
 import { ProceduralCover } from '@/components/ui/ProceduralCover';
 import { TrackList } from '@/components/shared/TrackList';
 import { Play, Heart, MoreHorizontal, Share } from 'lucide-react';
 
-export default function PlaylistPage() {
-    const { id } = useParams();
+export function generateStaticParams() {
+    return playlists.map((playlist) => ({
+        id: playlist.id,
+    }));
+}
+
+export default function PlaylistPage({ params }: { params: { id: string } }) {
+    const { id } = params;
     const playlist = playlists.find(p => p.id === id);
 
     if (!playlist) return <div className="text-white">Playlist not found</div>;

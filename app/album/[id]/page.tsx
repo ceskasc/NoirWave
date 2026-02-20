@@ -1,13 +1,17 @@
-"use client";
 import React from 'react';
 import { albums, tracks, artists } from '@/data/db';
-import { useParams } from 'next/navigation';
 import { ProceduralCover } from '@/components/ui/ProceduralCover';
 import { TrackList } from '@/components/shared/TrackList';
 import { Play, Heart, MoreHorizontal } from 'lucide-react';
 
-export default function AlbumPage() {
-    const { id } = useParams();
+export function generateStaticParams() {
+    return albums.map((album) => ({
+        id: album.id,
+    }));
+}
+
+export default function AlbumPage({ params }: { params: { id: string } }) {
+    const { id } = params;
     const album = albums.find(a => a.id === id);
 
     if (!album) return <div className="text-white">Album not found</div>;
