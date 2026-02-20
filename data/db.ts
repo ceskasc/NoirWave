@@ -33,48 +33,88 @@ export const albums = [
     { id: "al15", title: "Jazz Club After Hours", artistId: "a7", year: 2021, cover: "https://images.unsplash.com/photo-1520523839897-bd0b52f945a0?w=800&q=80" }, // Whiskey glass dark
 ];
 
-// Reusing the 5 real audio mock MP3s in a round-robin
-const audioLinks = [
-    "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3",
-    "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3",
-    "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-3.mp3",
-    "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-8.mp3",
-    "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-9.mp3",
-];
+// Expanded, genre-specific audio mock MP3s
+const genreAudioLinks: Record<string, string[]> = {
+    "Synthwave": [
+        "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3",
+        "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3",
+    ],
+    "Cinematic": [
+        "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-3.mp3",
+        "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-4.mp3",
+    ],
+    "Classical": [
+        "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-5.mp3",
+        "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-6.mp3",
+    ],
+    "Electronic": [
+        "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-7.mp3",
+        "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-8.mp3",
+    ],
+    "Lofi Hip Hop": [
+        "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-9.mp3",
+        "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-10.mp3",
+    ],
+    "Jazz": [
+        "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-11.mp3",
+        "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-12.mp3",
+    ],
+    "Industrial": [
+        "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-13.mp3",
+        "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-14.mp3",
+    ],
+    "Rock": [
+        "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-15.mp3",
+        "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-16.mp3",
+    ],
+    "Ambient": [
+        "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-17.mp3",
+        "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3",
+    ]
+};
+
+// Helper: Get audio by genre, cycling through available options
+const getAudio = (artistId: string, trackIndex: number) => {
+    const artist = artists.find(a => a.id === artistId);
+    if (!artist || !artist.genre) return genreAudioLinks["Electronic"][0];
+
+    const links = genreAudioLinks[artist.genre] || genreAudioLinks["Electronic"];
+    return links[trackIndex % links.length];
+};
 
 export const tracks = [
     // Original 5
-    { id: "t1", title: "Midnight Cruise", artistId: "a1", albumId: "al1", duration: 372, audioUrl: audioLinks[0], cover: albums[0].cover },
-    { id: "t2", title: "Neon Skyline", artistId: "a2", albumId: "al2", duration: 425, audioUrl: audioLinks[1], cover: albums[1].cover },
-    { id: "t3", title: "Galactic Drift", artistId: "a3", albumId: "al3", duration: 344, audioUrl: audioLinks[2], cover: albums[2].cover },
-    { id: "t4", title: "Cybernetic Heartbeat", artistId: "a4", albumId: "al4", duration: 342, audioUrl: audioLinks[3], cover: albums[3].cover },
-    { id: "t5", title: "City Lights", artistId: "a4", albumId: "al4", duration: 326, audioUrl: audioLinks[4], cover: albums[3].cover },
+    { id: "t1", title: "Midnight Cruise", artistId: "a1", albumId: "al1", duration: 372, audioUrl: getAudio("a1", 0), cover: albums[0].cover },
+    { id: "t2", title: "Neon Skyline", artistId: "a2", albumId: "al2", duration: 425, audioUrl: getAudio("a2", 0), cover: albums[1].cover },
+    { id: "t3", title: "Galactic Drift", artistId: "a3", albumId: "al3", duration: 344, audioUrl: getAudio("a3", 0), cover: albums[2].cover },
+    { id: "t4", title: "Cybernetic Heartbeat", artistId: "a4", albumId: "al4", duration: 342, audioUrl: getAudio("a4", 0), cover: albums[3].cover },
+    { id: "t5", title: "City Lights", artistId: "a4", albumId: "al4", duration: 326, audioUrl: getAudio("a4", 1), cover: albums[3].cover },
     // 25 New tracks exploring the massive mock landscape
-    { id: "t6", title: "Lofi Cafe Vibe", artistId: "a5", albumId: "al6", duration: 180, audioUrl: audioLinks[0], cover: albums[5].cover },
-    { id: "t7", title: "Rainy Midnight Tokyo", artistId: "a5", albumId: "al7", duration: 215, audioUrl: audioLinks[1], cover: albums[6].cover },
-    { id: "t8", title: "Epic Space Battle", artistId: "a6", albumId: "al8", duration: 450, audioUrl: audioLinks[2], cover: albums[7].cover },
-    { id: "t9", title: "Hans's Dream", artistId: "a6", albumId: "al8", duration: 310, audioUrl: audioLinks[3], cover: albums[7].cover },
-    { id: "t10", title: "Smooth Saxophone Solo", artistId: "a7", albumId: "al9", duration: 240, audioUrl: audioLinks[4], cover: albums[8].cover },
-    { id: "t11", title: "Double Bass Groove", artistId: "a7", albumId: "al9", duration: 290, audioUrl: audioLinks[0], cover: albums[8].cover },
-    { id: "t12", title: "Hacking the Mainframe", artistId: "a8", albumId: "al10", duration: 330, audioUrl: audioLinks[1], cover: albums[9].cover },
-    { id: "t13", title: "V's Theme", artistId: "a8", albumId: "al10", duration: 410, audioUrl: audioLinks[2], cover: albums[9].cover },
-    { id: "t14", title: "Ethereal Drone 1", artistId: "a9", albumId: "al11", duration: 520, audioUrl: audioLinks[3], cover: albums[10].cover },
-    { id: "t15", title: "Guitar Solo 1986", artistId: "a10", albumId: "al12", duration: 395, audioUrl: audioLinks[4], cover: albums[11].cover },
-    { id: "t16", title: "Symphony No. 5", artistId: "a2", albumId: "al13", duration: 480, audioUrl: audioLinks[0], cover: albums[12].cover },
-    { id: "t17", title: "Moonlight Sonata", artistId: "a2", albumId: "al13", duration: 320, audioUrl: audioLinks[1], cover: albums[12].cover },
-    { id: "t18", title: "Synthesizer Love", artistId: "a1", albumId: "al14", duration: 295, audioUrl: audioLinks[2], cover: albums[13].cover },
-    { id: "t19", title: "Whiskey and Cigars", artistId: "a7", albumId: "al15", duration: 210, audioUrl: audioLinks[3], cover: albums[14].cover },
-    { id: "t20", title: "Cyber Runner", artistId: "a8", albumId: "al10", duration: 345, audioUrl: audioLinks[4], cover: albums[9].cover },
-    { id: "t21", title: "Deep Forest Magic", artistId: "a3", albumId: "al3", duration: 280, audioUrl: audioLinks[0], cover: albums[2].cover },
-    { id: "t22", title: "Space Anomaly", artistId: "a6", albumId: "al8", duration: 390, audioUrl: audioLinks[1], cover: albums[7].cover },
-    { id: "t23", title: "Piano Concerto", artistId: "a2", albumId: "al13", duration: 420, audioUrl: audioLinks[2], cover: albums[12].cover },
-    { id: "t24", title: "Chill Beats to Study to", artistId: "a5", albumId: "al6", duration: 195, audioUrl: audioLinks[3], cover: albums[5].cover },
-    { id: "t25", title: "Electric Night", artistId: "a10", albumId: "al12", duration: 260, audioUrl: audioLinks[4], cover: albums[11].cover },
-    { id: "t26", title: "Dark Alloy", artistId: "a8", albumId: "al10", duration: 310, audioUrl: audioLinks[0], cover: albums[9].cover },
-    { id: "t27", title: "Neon Tokyo", artistId: "a4", albumId: "al4", duration: 340, audioUrl: audioLinks[1], cover: albums[3].cover },
-    { id: "t28", title: "Quiet Rain", artistId: "a5", albumId: "al7", duration: 210, audioUrl: audioLinks[2], cover: albums[6].cover },
-    { id: "t29", title: "Jazz Lounge", artistId: "a7", albumId: "al15", duration: 285, audioUrl: audioLinks[3], cover: albums[14].cover },
-    { id: "t30", title: "Final Boss Theme", artistId: "a6", albumId: "al8", duration: 360, audioUrl: audioLinks[4], cover: albums[7].cover }
+    { id: "t6", title: "Lofi Cafe Vibe", artistId: "a5", albumId: "al6", duration: 180, audioUrl: getAudio("a5", 0), cover: albums[5].cover },
+    { id: "t7", title: "Rainy Midnight Tokyo", artistId: "a5", albumId: "al7", duration: 215, audioUrl: getAudio("a5", 1), cover: albums[6].cover },
+    { id: "t8", title: "Epic Space Battle", artistId: "a6", albumId: "al8", duration: 450, audioUrl: getAudio("a6", 0), cover: albums[7].cover },
+    { id: "t9", title: "Hans's Dream", artistId: "a6", albumId: "al8", duration: 310, audioUrl: getAudio("a6", 1), cover: albums[7].cover },
+    { id: "t10", title: "Smooth Saxophone Solo", artistId: "a7", albumId: "al9", duration: 240, audioUrl: getAudio("a7", 0), cover: albums[8].cover },
+    { id: "t11", title: "Double Bass Groove", artistId: "a7", albumId: "al9", duration: 290, audioUrl: getAudio("a7", 1), cover: albums[8].cover },
+    { id: "t12", title: "Hacking the Mainframe", artistId: "a8", albumId: "al10", duration: 330, audioUrl: getAudio("a8", 0), cover: albums[9].cover },
+    { id: "t13", title: "V's Theme", artistId: "a8", albumId: "al10", duration: 410, audioUrl: getAudio("a8", 1), cover: albums[9].cover },
+    { id: "t14", title: "Ethereal Drone 1", artistId: "a9", albumId: "al11", duration: 520, audioUrl: getAudio("a9", 0), cover: albums[10].cover },
+    { id: "t15", title: "Guitar Solo 1986", artistId: "a10", albumId: "al12", duration: 395, audioUrl: getAudio("a10", 0), cover: albums[11].cover },
+    { id: "t16", title: "Symphony No. 5", artistId: "a2", albumId: "al13", duration: 480, audioUrl: getAudio("a2", 1), cover: albums[12].cover },
+    { id: "t17", title: "Moonlight Sonata", artistId: "a2", albumId: "al13", duration: 320, audioUrl: getAudio("a2", 2), cover: albums[12].cover },
+    { id: "t18", title: "Synthesizer Love", artistId: "a1", albumId: "al14", duration: 295, audioUrl: getAudio("a1", 1), cover: albums[13].cover },
+    { id: "t19", title: "Whiskey and Cigars", artistId: "a7", albumId: "al15", duration: 210, audioUrl: getAudio("a7", 2), cover: albums[14].cover },
+    { id: "t20", title: "Cyber Runner", artistId: "a8", albumId: "al10", duration: 345, audioUrl: getAudio("a8", 2), cover: albums[9].cover },
+    { id: "t21", title: "Deep Forest Magic", artistId: "a3", albumId: "al3", duration: 280, audioUrl: getAudio("a3", 1), cover: albums[2].cover },
+    { id: "t22", title: "Space Anomaly", artistId: "a6", albumId: "al8", duration: 390, audioUrl: getAudio("a6", 2), cover: albums[7].cover },
+    { id: "t23", title: "Piano Concerto", artistId: "a2", albumId: "al13", duration: 420, audioUrl: getAudio("a2", 3), cover: albums[12].cover },
+    { id: "t24", title: "Chill Beats to Study to", artistId: "a5", albumId: "al6", duration: 195, audioUrl: getAudio("a5", 2), cover: albums[5].cover },
+    { id: "t25", title: "Electric Night", artistId: "a10", albumId: "al12", duration: 260, audioUrl: getAudio("a10", 1), cover: albums[11].cover },
+    { id: "t26", title: "Dark Alloy", artistId: "a8", albumId: "al10", duration: 310, audioUrl: getAudio("a8", 3), cover: albums[9].cover },
+    { id: "t27", title: "Neon Tokyo", artistId: "a4", albumId: "al4", duration: 340, audioUrl: getAudio("a4", 2), cover: albums[3].cover },
+    { id: "t28", title: "Quiet Rain", artistId: "a5", albumId: "al7", duration: 210, audioUrl: getAudio("a5", 3), cover: albums[6].cover },
+    { id: "t29", title: "Jazz Lounge", artistId: "a7", albumId: "al15", duration: 285, audioUrl: getAudio("a7", 3), cover: albums[14].cover },
+    { id: "t30", title: "Final Boss Theme", artistId: "a6", albumId: "al8", duration: 360, audioUrl: getAudio("a6", 3), cover: albums[7].cover }
 ];
 
 export const playlists = [
@@ -94,15 +134,15 @@ export const userProfile = {
 };
 
 export const podcasts = [
-    { id: "po1", title: "The Daily Tech", host: "Sarah Jenkins", description: "Your daily dose of the latest in tech, AI, and software.", cover: "https://images.unsplash.com/photo-1589903308904-1010c2294adc?w=800&q=80", audioUrl: audioLinks[0], duration: 1200 }, // Podcast mic
-    { id: "po2", title: "Noir Conversations", host: "Marcus Vance", description: "Deep dives into the synthwave scene and electronic music history.", cover: "https://images.unsplash.com/photo-1610815147823-3806e22ee51b?w=800&q=80", audioUrl: audioLinks[1], duration: 2500 }, // Dark studio
-    { id: "po3", title: "Mindful Moments", host: "Dr. Elena Rostova", description: "Short meditations and mindfulness talks for a calm mind.", cover: "https://images.unsplash.com/photo-1499209974431-9dddcece7f88?w=800&q=80", audioUrl: audioLinks[2], duration: 900 } // Zen stones
+    { id: "po1", title: "The Daily Tech", host: "Sarah Jenkins", description: "Your daily dose of the latest in tech, AI, and software.", cover: "https://images.unsplash.com/photo-1589903308904-1010c2294adc?w=800&q=80", audioUrl: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-5.mp3", duration: 1200 }, // Podcast mic
+    { id: "po2", title: "Noir Conversations", host: "Marcus Vance", description: "Deep dives into the synthwave scene and electronic music history.", cover: "https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?w=800&q=80", audioUrl: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3", duration: 2500 }, // Dark studio
+    { id: "po3", title: "Mindful Moments", host: "Dr. Elena Rostova", description: "Short meditations and mindfulness talks for a calm mind.", cover: "https://images.unsplash.com/photo-1499209974431-9dddcece7f88?w=800&q=80", audioUrl: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-17.mp3", duration: 900 } // Zen stones
 ];
 
 export const radios = [
-    { id: "r1", title: "Night City FM", description: "24/7 continuous synthwave and retrowave streams.", cover: "https://images.unsplash.com/photo-1563089145-599997674d42?w=800&q=80", audioUrl: audioLinks[3] }, // Neon sign FM
-    { id: "r2", title: "Lofi Beats Radio", description: "Beats to relax/study to. Endless lofi station.", cover: "https://images.unsplash.com/photo-1524661135-423995f22d0b?w=800&q=80", audioUrl: audioLinks[4] }, // Cozy room rain
-    { id: "r3", title: "Classical Resonance", description: "The greatest symphonies streaming live from Vienna.", cover: "https://images.unsplash.com/photo-1549834185-132d7515eeaf?w=800&q=80", audioUrl: audioLinks[0] } // Orchestra hall
+    { id: "r1", title: "Night City FM", description: "24/7 continuous synthwave and retrowave streams.", cover: "https://images.unsplash.com/photo-1563089145-599997674d42?w=800&q=80", audioUrl: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-7.mp3" }, // Neon sign FM
+    { id: "r2", title: "Lofi Beats Radio", description: "Beats to relax/study to. Endless lofi station.", cover: "https://images.unsplash.com/photo-1524661135-423995f22d0b?w=800&q=80", audioUrl: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-9.mp3" }, // Cozy room rain
+    { id: "r3", title: "Classical Resonance", description: "The greatest symphonies streaming live from Vienna.", cover: "https://images.unsplash.com/photo-1549834185-132d7515eeaf?w=800&q=80", audioUrl: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-6.mp3" } // Orchestra hall
 ];
 
 // Mock chronological listening history (Track IDs and timestamps)
