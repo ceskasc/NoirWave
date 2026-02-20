@@ -7,4 +7,4 @@ const nextConfig = {
     basePath: '/NoirWave',
 };
 
-export default nextConfig;
+module.exports = nextConfig;
