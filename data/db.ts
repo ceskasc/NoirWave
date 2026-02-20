@@ -11,6 +11,15 @@ export const artists = [
     { id: "a8", name: "Cyberpunk 2077 Vibe", genre: "Industrial", image: "https://images.unsplash.com/photo-1579567761406-4684ee0c75b6?w=800&q=80" }, // Scifi corridor
     { id: "a9", name: "Ethereal Vocals", genre: "Ambient", image: "https://images.unsplash.com/photo-1493225245754-0eb75c3db325?w=800&q=80" }, // Foggy forest girl
     { id: "a10", name: "The Rockers", genre: "Rock", image: "https://images.unsplash.com/photo-1498038432885-c6f3f1b912ee?w=800&q=80" }, // Electric guitar live
+    // Expanded Genres Artists
+    { id: "a11", name: "Vapor Knight", genre: "Vaporwave", image: "https://images.unsplash.com/photo-1550684848-fac1c5b4e853?w=800&q=80" },
+    { id: "a12", name: "Star Dust", genre: "Space Drift", image: "https://images.unsplash.com/photo-1462331940025-496dfbfc7564?w=800&q=80" },
+    { id: "a13", name: "Rainy Day Jazz", genre: "Rainy Cafe", image: "https://images.unsplash.com/photo-1495474472201-4b6abcc34629?w=800&q=80" },
+    { id: "a14", name: "Zen Master", genre: "Meditation", image: "https://images.unsplash.com/photo-1499209974431-9dddcece7f88?w=800&q=80" },
+    { id: "a15", name: "Ivory Scales", genre: "Piano", image: "https://images.unsplash.com/photo-1520523839897-bd0b52f945a0?w=800&q=80" },
+    { id: "a16", name: "Soul Train", genre: "Funk & Soul", image: "https://images.unsplash.com/photo-1516280440502-628d05206373?w=800&q=80" },
+    { id: "a17", name: "Main Stage", genre: "DJ Sets", image: "https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=800&q=80" },
+    { id: "a18", name: "Deep Echo", genre: "Deep Bass", image: "https://images.unsplash.com/photo-1470225620780-dba8ba36b745?w=800&q=80" },
 ];
 
 export const albums = [
@@ -70,6 +79,38 @@ const genreAudioLinks: Record<string, string[]> = {
     "Ambient": [
         "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-17.mp3",
         "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3",
+    ],
+    "Vaporwave": [
+        "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-8.mp3",
+        "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-9.mp3",
+    ],
+    "Space Drift": [
+        "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-10.mp3",
+        "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-11.mp3",
+    ],
+    "Rainy Cafe": [
+        "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-12.mp3",
+        "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-13.mp3",
+    ],
+    "Meditation": [
+        "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-14.mp3",
+        "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-15.mp3",
+    ],
+    "Piano": [
+        "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-16.mp3",
+        "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3",
+    ],
+    "Funk & Soul": [
+        "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3",
+        "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-3.mp3",
+    ],
+    "DJ Sets": [
+        "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-4.mp3",
+        "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-5.mp3",
+    ],
+    "Deep Bass": [
+        "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-6.mp3",
+        "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-7.mp3",
     ]
 };
 
@@ -114,7 +155,16 @@ export const tracks = [
     { id: "t27", title: "Neon Tokyo", artistId: "a4", albumId: "al4", duration: 340, audioUrl: getAudio("a4", 2), cover: albums[3].cover },
     { id: "t28", title: "Quiet Rain", artistId: "a5", albumId: "al7", duration: 210, audioUrl: getAudio("a5", 3), cover: albums[6].cover },
     { id: "t29", title: "Jazz Lounge", artistId: "a7", albumId: "al15", duration: 285, audioUrl: getAudio("a7", 3), cover: albums[14].cover },
-    { id: "t30", title: "Final Boss Theme", artistId: "a6", albumId: "al8", duration: 360, audioUrl: getAudio("a6", 3), cover: albums[7].cover }
+    { id: "t30", title: "Final Boss Theme", artistId: "a6", albumId: "al8", duration: 360, audioUrl: getAudio("a6", 3), cover: albums[7].cover },
+    // Tracks for expanded genres
+    { id: "t31", title: "Floral Shoppe Vibe", artistId: "a11", albumId: "al1", duration: 240, audioUrl: getAudio("a11", 0), cover: "https://images.unsplash.com/photo-1550684848-fac1c5b4e853?w=800&q=80" },
+    { id: "t32", title: "Rings of Saturn", artistId: "a12", albumId: "al8", duration: 310, audioUrl: getAudio("a12", 0), cover: "https://images.unsplash.com/photo-1462331940025-496dfbfc7564?w=800&q=80" },
+    { id: "t33", title: "Rainy Afternoon", artistId: "a13", albumId: "al9", duration: 280, audioUrl: getAudio("a13", 0), cover: "https://images.unsplash.com/photo-1495474472201-4b6abcc34629?w=800&q=80" },
+    { id: "t34", title: "Crystal Clarity", artistId: "a14", albumId: "al11", duration: 420, audioUrl: getAudio("a14", 0), cover: "https://images.unsplash.com/photo-1499209974431-9dddcece7f88?w=800&q=80" },
+    { id: "t35", title: "Gilded Keys", artistId: "a15", albumId: "al13", duration: 195, audioUrl: getAudio("a15", 0), cover: "https://images.unsplash.com/photo-1520523839897-bd0b52f945a0?w=800&q=80" },
+    { id: "t36", title: "Groove Express", artistId: "a16", albumId: "al15", duration: 340, audioUrl: getAudio("a16", 0), cover: "https://images.unsplash.com/photo-1516280440502-628d05206373?w=800&q=80" },
+    { id: "t37", title: "Tomorrowland Set", artistId: "a17", albumId: "al12", duration: 500, audioUrl: getAudio("a17", 0), cover: "https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=800&q=80" },
+    { id: "t38", title: "Subterranean Bass", artistId: "a18", albumId: "al11", duration: 260, audioUrl: getAudio("a18", 0), cover: "https://images.unsplash.com/photo-1470225620780-dba8ba36b745?w=800&q=80" },
 ];
 
 export const playlists = [
@@ -142,7 +192,7 @@ export const podcasts = [
 export const radios = [
     { id: "r1", title: "Night City FM", description: "24/7 continuous synthwave and retrowave streams.", cover: "https://images.unsplash.com/photo-1563089145-599997674d42?w=800&q=80", audioUrl: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-7.mp3" }, // Neon sign FM
     { id: "r2", title: "Lofi Beats Radio", description: "Beats to relax/study to. Endless lofi station.", cover: "https://images.unsplash.com/photo-1524661135-423995f22d0b?w=800&q=80", audioUrl: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-9.mp3" }, // Cozy room rain
-    { id: "r3", title: "Classical Resonance", description: "The greatest symphonies streaming live from Vienna.", cover: "https://images.unsplash.com/photo-1549834185-132d7515eeaf?w=800&q=80", audioUrl: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-6.mp3" } // Orchestra hall
+    { id: "r3", title: "Classical Resonance", description: "The greatest symphonies streaming live from Vienna.", cover: "https://images.unsplash.com/photo-1514119412350-e174d90d280e?w=800&q=80", audioUrl: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-6.mp3" } // Orchestra hall
 ];
 
 // Mock chronological listening history (Track IDs and timestamps)
